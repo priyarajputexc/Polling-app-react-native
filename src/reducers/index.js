@@ -13,7 +13,7 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         accessToken: action.data && action.data.token,
-        error: null
+        error: null,
       };
 
     case actions.LOGIN_FAILURE:
@@ -21,7 +21,20 @@ const reducer = (state, action) => {
         ...state,
         isLoading: false,
         error: action.data,
-        token: null
+        accessToken: null,
+      };
+
+    case actions.GET_POLLS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case actions.POLLS_RECEIVED:
+      return {
+        ...state,
+        isLoading: false,
+        polls: action.polls,
       };
 
     default:

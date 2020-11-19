@@ -15,3 +15,12 @@ export const loginFailure = (data) => ({
   type: actions.LOGIN_FAILURE,
   data,
 });
+
+export const getPolls = () => ({
+  type: actions.GET_POLLS,
+});
+
+export const pollsReceived = (polls) => ({
+  type: actions.POLLS_RECEIVED,
+  polls,
+});
