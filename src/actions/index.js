@@ -24,3 +24,17 @@ export const pollsReceived = (polls) => ({
   type: actions.POLLS_RECEIVED,
   polls,
 });
+
+export const getUsers = () => ({
+  type: actions.GET_USERS,
+});
+
+export const usersReceived = (users) => ({
+  type: actions.USERS_RECEIVED,
+  users,
+});
+
+export const addUser = (body) => ({
+  type: actions.ADD_USER,
+  body,
+});

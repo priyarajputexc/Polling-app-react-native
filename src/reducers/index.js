@@ -37,6 +37,26 @@ const reducer = (state, action) => {
         polls: action.polls,
       };
 
+    case actions.GET_USERS:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
+    case actions.USERS_RECEIVED:
+      return {
+        ...state,
+        isLoading: false,
+        users: action.users,
+      };
+
+    case actions.ADD_USER:
+      return {
+        ...state,
+        body: action.body,
+        isLoading: true,
+      };
+
     default:
       return state;
   }
