@@ -57,6 +57,12 @@ const reducer = (state, action) => {
         isLoading: true,
       };
 
+    case actions.DELETE_OPTION:
+      return {
+        ...state,
+        body: action.body,
+      };
+
     default:
       return state;
   }

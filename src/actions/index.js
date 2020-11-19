@@ -38,3 +38,8 @@ export const addUser = (body) => ({
   type: actions.ADD_USER,
   body,
 });
+
+export const deleteOption = (body) => ({
+  type: actions.DELETE_OPTION,
+  body,
+});
