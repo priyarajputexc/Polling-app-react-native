@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { getUsers } from '../actions';
 
@@ -18,8 +18,6 @@ const userElement = (user, index) => {
 };
 
 const Users = (props) => {
-  const { navigate } = props.navigation;
-
   useEffect(() => {
     props.getUsers();
   }, []);

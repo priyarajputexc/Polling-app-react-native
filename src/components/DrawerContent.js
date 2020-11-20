@@ -1,12 +1,27 @@
 import { DrawerItem } from '@react-navigation/drawer';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Drawer, Text } from 'react-native-paper';
 import { colors } from '../../constants';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DrawerContent = (props) => {
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    setTimeout(async () => {
+      try {
+        const username = await AsyncStorage.getItem('username');
+        username && setUsername(username);
+      } catch (error) {
+        console.error(error);
+      }
+    }, 1000);
+  }, []);
+
   return (
     <View style={styles.drawerContent}>
       <Drawer.Section>
@@ -16,10 +31,7 @@ const DrawerContent = (props) => {
             color={colors.white}
             size={50}
           />
-          <View style={styles.userinfo}>
-            <Text style={styles.username}>Priya Rajput</Text>
-            <Text style={styles.role}>Admin</Text>
-          </View>
+          <Text style={styles.username}>{username}</Text>
         </View>
       </Drawer.Section>
 
@@ -75,13 +87,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  userinfo: {
-    marginLeft: 10,
-  },
   username: {
     fontSize: 30,
     fontWeight: '500',
     color: colors.white,
+    marginLeft: 10,
     marginBottom: 0,
   },
   role: {
@@ -98,4 +108,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DrawerContent;
+const mapStateToProps = (state) => ({
+  username: state && state.username,
+});
+
+export default connect(mapStateToProps, null)(DrawerContent);

@@ -17,6 +17,7 @@ function* handleLogin(action) {
     } else {
       yield put(loginSuccess(data));
       data.token && AsyncStorage.setItem('accessToken', data.token);
+      data.token && AsyncStorage.setItem('username', action.username);
     }
   } catch (error) {
     yield put(loginFailure(error.toString()));
