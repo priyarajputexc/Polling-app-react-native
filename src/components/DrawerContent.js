@@ -45,6 +45,13 @@ const DrawerContent = (props) => {
           onPress={() => props.navigation.navigate('Home')}
         />
         <DrawerItem
+          label='Create Poll'
+          icon={() => (
+            <MaterialCommunityIcons name='plus-circle' color={colors.blue} size={25} />
+          )}
+          onPress={() => props.navigation.navigate('Create Poll')}
+        />
+        <DrawerItem
           label='Users'
           icon={() => (
             <MaterialCommunityIcons
