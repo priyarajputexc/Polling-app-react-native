@@ -4,6 +4,7 @@ export const colors = {
   grey: '#d3d3d3',
   green: '#61DEA4',
   red: '#F45E6D',
+  lightGrey: '#f4f4f4',
 };
 
 export const actions = {

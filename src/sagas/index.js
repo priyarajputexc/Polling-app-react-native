@@ -7,13 +7,17 @@ import {
   pollsReceived,
   usersReceived,
 } from '../actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function* handleLogin(action) {
   try {
     const data = yield call(login, action.username, action.password);
-    data && data.error
-      ? yield put(loginFailure(data.data))
-      : yield put(loginSuccess(data));
+    if (data && data.error) {
+      yield put(loginFailure(data.data));
+    } else {
+      yield put(loginSuccess(data));
+      data.token && AsyncStorage.setItem('accessToken', data.token);
+    }
   } catch (error) {
     yield put(loginFailure(error.toString()));
   }

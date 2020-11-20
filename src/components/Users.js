@@ -26,7 +26,6 @@ const Users = (props) => {
 
   return (
     <View style={styles.container}>
-      <Button title='Add User' onPress={() => navigate('Add User')} />
       <FlatList
         data={props.users}
         renderItem={({ item, index }) => userElement(item, index + 1)}
