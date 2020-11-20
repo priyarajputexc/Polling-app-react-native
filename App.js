@@ -6,8 +6,6 @@ import { colors } from './constants';
 import Constants from 'expo-constants';
 import { Provider } from 'react-redux';
 import store from './src/store';
-import Header from './src/components/Header';
-import Home from './src/components/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MyDrawer from './src/components/MyDrawer';
