@@ -1,7 +1,12 @@
 import { actions } from '../../constants';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { login, getPolls } from '../api';
-import { loginSuccess, loginFailure, pollsReceived } from '../actions';
+import { login, getPolls, getUsers, addUser, deleteOption } from '../api';
+import {
+  loginSuccess,
+  loginFailure,
+  pollsReceived,
+  usersReceived,
+} from '../actions';
 
 function* handleLogin(action) {
   try {
@@ -19,13 +24,43 @@ function* handleGetPolls() {
     const data = yield call(getPolls);
     if (data && !data.error) yield put(pollsReceived(data.data));
   } catch (error) {
-    // yield put(loginFailure(error.toString()));
+    console.error(error);
+  }
+}
+
+function* handleGetUsers() {
+  try {
+    const data = yield call(getUsers);
+    if (data && !data.error) yield put(usersReceived(data.data));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* handleAddUser(action) {
+  try {
+    const data = yield call(addUser, action.body);
+    if (data && !data.error) yield handleGetUsers();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* handleDeleteOption(action) {
+  try {
+    const data = yield call(deleteOption, action.body);
+    if (data && !data.error) yield getPolls();
+  } catch (error) {
+    console.error(error);
   }
 }
 
 function* actionWatcher() {
   yield takeLatest(actions.LOGIN, handleLogin);
   yield takeLatest(actions.GET_POLLS, handleGetPolls);
+  yield takeLatest(actions.GET_USERS, handleGetUsers);
+  yield takeLatest(actions.ADD_USER, handleAddUser);
+  yield takeLatest(actions.DELETE_OPTION, handleDeleteOption);
 }
 
 export default function* rootSaga() {

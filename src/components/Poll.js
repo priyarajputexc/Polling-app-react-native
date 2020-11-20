@@ -12,7 +12,7 @@ const Poll = ({ poll, index }) => {
 
       <FlatList
         data={poll.options}
-        renderItem={({ item }) => <Option option={item} />}
+        renderItem={({ item }) => <Option pollId={poll._id} option={item} />}
         keyExtractor={(item, index) => index.toString()}
       />
     </View>
