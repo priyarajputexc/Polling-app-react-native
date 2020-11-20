@@ -7,6 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { connect } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { signOut } from '../actions';
 
 const DrawerContent = (props) => {
   const [username, setUsername] = useState('');
@@ -73,6 +74,12 @@ const DrawerContent = (props) => {
               size={25}
             />
           )}
+          onPress={() => {
+            AsyncStorage.removeItem('accessToken');
+            AsyncStorage.removeItem('username');
+            props.navigation.navigate('Login');
+            props.signOut();
+          }}
         />
       </Drawer.Section>
     </View>
@@ -112,4 +119,8 @@ const mapStateToProps = (state) => ({
   username: state && state.username,
 });
 
-export default connect(mapStateToProps, null)(DrawerContent);
+const mapDispatchToProps = (dispatch) => ({
+  signOut: () => dispatch(signOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent);

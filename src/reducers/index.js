@@ -24,6 +24,9 @@ const reducer = (state, action) => {
         accessToken: null,
       };
 
+    case actions.SIGN_OUT:
+      return {};
+
     case actions.GET_POLLS:
       return {
         ...state,

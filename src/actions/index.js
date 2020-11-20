@@ -16,6 +16,10 @@ export const loginFailure = (data) => ({
   data,
 });
 
+export const signOut = () => ({
+  type: actions.SIGN_OUT,
+});
+
 export const getPolls = () => ({
   type: actions.GET_POLLS,
 });
