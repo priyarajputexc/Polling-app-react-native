@@ -43,6 +43,10 @@ export const addUser = (body) => ({
   body,
 });
 
+export const votePoll = () => ({
+  type: actions.VOTE_POLL,
+});
+
 export const deleteOption = (body) => ({
   type: actions.DELETE_OPTION,
   body,

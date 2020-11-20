@@ -60,6 +60,12 @@ const reducer = (state, action) => {
         isLoading: true,
       };
 
+    case actions.VOTE_POLL:
+      return {
+        ...state,
+        data,
+      };
+
     case actions.DELETE_OPTION:
       return {
         ...state,
