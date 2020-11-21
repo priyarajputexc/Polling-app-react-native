@@ -16,6 +16,10 @@ export const loginFailure = (data) => ({
   data,
 });
 
+export const signOut = () => ({
+  type: actions.SIGN_OUT,
+});
+
 export const getPolls = () => ({
   type: actions.GET_POLLS,
 });
@@ -37,6 +41,10 @@ export const usersReceived = (users) => ({
 export const addUser = (body) => ({
   type: actions.ADD_USER,
   body,
+});
+
+export const votePoll = () => ({
+  type: actions.VOTE_POLL,
 });
 
 export const deleteOption = (body) => ({

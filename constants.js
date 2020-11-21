@@ -4,12 +4,14 @@ export const colors = {
   grey: '#d3d3d3',
   green: '#61DEA4',
   red: '#F45E6D',
+  lightGrey: '#f4f4f4',
 };
 
 export const actions = {
   LOGIN: 'LOGIN',
   LOGIN_SUCCESS: 'LOGIN_SUCCESS',
   LOGIN_FAILURE: 'LOGIN_FAILURE',
+  SIGN_OUT: 'SIGN_OUT',
 
   GET_USERS: 'GET_USERS',
   USERS_RECEIVED: 'USERS_RECEIVED',
@@ -21,6 +23,7 @@ export const actions = {
   CREATE_POLL: 'CREATE_POLL',
   EDIT_POLL: 'EDIT_POLL',
   DELETE_POLL: 'DELETE_POLL',
+  VOTE_POLL: 'VOTE_POLL',
 
   CREATE_OPTION: 'CREATE_OPTION',
   DELETE_OPTION: 'DELETE_OPTION',
