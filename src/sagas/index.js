@@ -1,6 +1,13 @@
 import { actions } from '../../constants';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { login, getPolls, getUsers, addUser, deleteOption, createPoll } from '../api';
+import {
+  login,
+  getPolls,
+  getUsers,
+  addUser,
+  deleteOption,
+  createPoll,
+} from '../api';
 import {
   loginSuccess,
   loginFailure,
@@ -63,7 +70,7 @@ function* handleCreatePoll(action) {
 function* handleDeleteOption(action) {
   try {
     const data = yield call(deleteOption, action.body);
-    if (data && !data.error) yield getPolls();
+    if (data && !data.error) yield handleGetPolls();
   } catch (error) {
     console.error(error);
   }

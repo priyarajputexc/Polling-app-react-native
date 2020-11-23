@@ -6,8 +6,8 @@ import Poll from './Poll';
 
 const Home = (props) => {
   useEffect(() => {
-    props.getPolls();
-  }, []);
+    !props.polls && props.getPolls();
+  }, [props.polls]);
 
   return (
     <View style={styles.container}>

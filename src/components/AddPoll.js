@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
   },
 });
 
-mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   createPoll: (body) => dispatch(createPoll(body)),
 });
 
