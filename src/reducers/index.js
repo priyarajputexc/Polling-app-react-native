@@ -1,6 +1,14 @@
 import { actions } from '../../constants';
 
-const reducer = (state, action) => {
+const initialState = {
+  isLoading: false,
+  polls: null,
+  users: null,
+  accessToken: null,
+  error: null,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOGIN:
       return {

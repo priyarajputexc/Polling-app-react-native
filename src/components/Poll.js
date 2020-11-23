@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FlatList,
+  Modal,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -11,9 +12,12 @@ import Option from './Option';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch } from 'react-redux';
 import { editPollTitle, deletePoll } from '../actions';
+import InputModal from './InputModal';
 
 const Poll = ({ poll, index }) => {
   const dispatch = useDispatch();
+  const [editPollModalVisible, setEditPollModalVisible] = useState(false);
+  const [newOptionModalVisible, setNewOptionModalVisible] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -29,15 +33,16 @@ const Poll = ({ poll, index }) => {
       />
 
       <View style={styles.actionIconContainer}>
-        <TouchableOpacity style={styles.actionIcon}>
+        <TouchableOpacity
+          style={styles.actionIcon}
+          onPress={() => setNewOptionModalVisible(true)}
+        >
           <MaterialIcons name='add' size={20} color={colors.white} />
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.actionIcon}
-          onPress={() =>
-            dispatch(editPollTitle({ id: poll._id, newTitle: 'hi' }))
-          }
+          onPress={() => setEditPollModalVisible(true)}
         >
           <MaterialIcons name='edit' size={20} color={colors.white} />
         </TouchableOpacity>
@@ -49,6 +54,33 @@ const Poll = ({ poll, index }) => {
           <MaterialIcons name='delete' size={20} color={colors.white} />
         </TouchableOpacity>
       </View>
+
+      <Modal
+        visible={editPollModalVisible}
+        animationType={'slide'}
+        transparent={true}
+      >
+        <InputModal
+          setModalVisibility={setEditPollModalVisible}
+          getInputValue={(newTitle) =>
+            dispatch(editPollTitle({ id: poll._id, newTitle }))
+          }
+        />
+      </Modal>
+
+      <Modal
+        visible={newOptionModalVisible}
+        animationType={'slide'}
+        transparent={true}
+      >
+        <InputModal
+          setModalVisibility={setNewOptionModalVisible}
+          getInputValue={(newOption) =>
+            // dispatch(editPollTitle({ id: poll._id, newTitle }))
+            console.log(newOption)
+          }
+        />
+      </Modal>
     </View>
   );
 };
