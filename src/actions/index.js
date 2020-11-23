@@ -62,6 +62,11 @@ export const votePoll = () => ({
   type: actions.VOTE_POLL,
 });
 
+export const createOption = (body) => ({
+  type: actions.CREATE_OPTION,
+  body,
+});
+
 export const deleteOption = (body) => ({
   type: actions.DELETE_OPTION,
   body,

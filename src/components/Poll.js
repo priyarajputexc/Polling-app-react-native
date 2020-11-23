@@ -11,7 +11,7 @@ import { colors } from '../../constants';
 import Option from './Option';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch } from 'react-redux';
-import { editPollTitle, deletePoll } from '../actions';
+import { editPollTitle, deletePoll, createOption } from '../actions';
 import InputModal from './InputModal';
 
 const Poll = ({ poll, index }) => {
@@ -61,6 +61,7 @@ const Poll = ({ poll, index }) => {
         transparent={true}
       >
         <InputModal
+          heading='Edit Poll Title'
           setModalVisibility={setEditPollModalVisible}
           getInputValue={(newTitle) =>
             dispatch(editPollTitle({ id: poll._id, newTitle }))
@@ -74,10 +75,10 @@ const Poll = ({ poll, index }) => {
         transparent={true}
       >
         <InputModal
+          heading='Add New Option'
           setModalVisibility={setNewOptionModalVisible}
           getInputValue={(newOption) =>
-            // dispatch(editPollTitle({ id: poll._id, newTitle }))
-            console.log(newOption)
+            dispatch(createOption({ id: poll._id, option: newOption }))
           }
         />
       </Modal>

@@ -14,7 +14,7 @@ const InputModal = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.modal}>
-        <Text style={styles.modalHeaderText}>Enter Title</Text>
+        <Text style={styles.modalHeaderText}>{props.heading}</Text>
 
         <TextInput
           style={styles.input}

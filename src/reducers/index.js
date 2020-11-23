@@ -87,6 +87,11 @@ const reducer = (state = initialState, action) => {
         ...state,
       };
 
+    case actions.CREATE_OPTION:
+      return {
+        ...state,
+      };
+
     case actions.DELETE_OPTION:
       return {
         ...state,
