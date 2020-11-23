@@ -66,6 +66,12 @@ const reducer = (state, action) => {
         body: action.body,
       };
 
+    case actions.DELETE_POLL:
+      return {
+        ...state,
+        pollId: action.pollId,
+      };
+
     case actions.VOTE_POLL:
       return {
         ...state,

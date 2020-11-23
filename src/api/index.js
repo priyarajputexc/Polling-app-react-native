@@ -51,6 +51,17 @@ export const createPoll = async (body) => {
   return data;
 };
 
+export const deletePoll = async (pollId) => {
+  const response = await fetch(
+    `${environment.apiBase}/delete_poll?id=${pollId}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
 export const deleteOption = async (body) => {
   const response = await fetch(
     `${environment.apiBase}/delete_poll_option?id=${body.id}&option_text=${body.option}`
