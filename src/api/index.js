@@ -51,6 +51,17 @@ export const createPoll = async (body) => {
   return data;
 };
 
+export const editPollTitle = async (body) => {
+  const response = await fetch(
+    `${environment.apiBase}/update_poll_title?id=${body.id}&title=${body.newTitle}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
 export const deletePoll = async (pollId) => {
   const response = await fetch(
     `${environment.apiBase}/delete_poll?id=${pollId}`

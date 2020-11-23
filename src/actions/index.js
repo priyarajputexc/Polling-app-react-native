@@ -48,6 +48,11 @@ export const createPoll = (body) => ({
   body,
 });
 
+export const editPollTitle = (body) => ({
+  type: actions.EDIT_POLL_TITLE,
+  body,
+});
+
 export const deletePoll = (pollId) => ({
   type: actions.DELETE_POLL,
   pollId,

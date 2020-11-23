@@ -10,7 +10,7 @@ import { colors } from '../../constants';
 import Option from './Option';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { useDispatch } from 'react-redux';
-import { deletePoll } from '../actions';
+import { editPollTitle, deletePoll } from '../actions';
 
 const Poll = ({ poll, index }) => {
   const dispatch = useDispatch();
@@ -33,7 +33,12 @@ const Poll = ({ poll, index }) => {
           <MaterialIcons name='add' size={20} color={colors.white} />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.actionIcon}>
+        <TouchableOpacity
+          style={styles.actionIcon}
+          onPress={() =>
+            dispatch(editPollTitle({ id: poll._id, newTitle: 'hi' }))
+          }
+        >
           <MaterialIcons name='edit' size={20} color={colors.white} />
         </TouchableOpacity>
 

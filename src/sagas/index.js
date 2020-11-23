@@ -8,6 +8,7 @@ import {
   deleteOption,
   createPoll,
   deletePoll,
+  editPollTitle,
 } from '../api';
 import {
   loginSuccess,
@@ -68,6 +69,15 @@ function* handleCreatePoll(action) {
   }
 }
 
+function* handleEditPollTitle(action) {
+  try {
+    const data = yield call(editPollTitle, action.body);
+    if (data && !data.error) yield handleGetPolls();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* handleDeletePoll(action) {
   try {
     const data = yield call(deletePoll, action.pollId);
@@ -93,6 +103,7 @@ function* actionWatcher() {
   yield takeLatest(actions.ADD_USER, handleAddUser);
 
   yield takeLatest(actions.CREATE_POLL, handleCreatePoll);
+  yield takeLatest(actions.EDIT_POLL_TITLE, handleEditPollTitle);
   yield takeLatest(actions.DELETE_POLL, handleDeletePoll);
 
   yield takeLatest(actions.DELETE_OPTION, handleDeleteOption);
