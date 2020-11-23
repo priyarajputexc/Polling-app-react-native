@@ -17,14 +17,16 @@ export default function App() {
   const [accessToken, setAccessToken] = useState('');
 
   useEffect(() => {
-    setTimeout(async () => {
+    const getToken = async () => {
       try {
         const token = await AsyncStorage.getItem('accessToken');
         token && setAccessToken(token);
       } catch (error) {
         console.error(error);
       }
-    }, 1000);
+    };
+
+    getToken();
   }, []);
 
   return (
