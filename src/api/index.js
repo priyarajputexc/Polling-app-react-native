@@ -40,6 +40,17 @@ export const addUser = async (body) => {
   return data;
 };
 
+export const createPoll = async (body) => {
+  const response = await fetch(
+    `${environment.apiBase}/add_poll?title=${body.pollTitle}&options=${body.options}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
 export const deleteOption = async (body) => {
   const response = await fetch(
     `${environment.apiBase}/delete_poll_option?id=${body.id}&option_text=${body.option}`

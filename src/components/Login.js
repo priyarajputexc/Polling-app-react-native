@@ -17,13 +17,13 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    if (!props.isLoading) {
+    if (props.error) {
       setUsername('');
       setPassword('');
     }
 
     props.accessToken && navigate('Home');
-  }, [props.isLoading, props.accessToken]);
+  }, [props.error, props.accessToken]);
 
   return (
     <View style={styles.container}>

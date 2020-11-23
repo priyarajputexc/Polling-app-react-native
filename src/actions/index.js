@@ -43,6 +43,11 @@ export const addUser = (body) => ({
   body,
 });
 
+export const createPoll = (body) => ({
+  type: actions.CREATE_POLL,
+  body,
+});
+
 export const votePoll = () => ({
   type: actions.VOTE_POLL,
 });
