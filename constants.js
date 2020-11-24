@@ -33,4 +33,6 @@ export const actions = {
 
   CREATE_OPTION: 'CREATE_OPTION',
   DELETE_OPTION: 'DELETE_OPTION',
+
+  STOP_LOADING: 'STOP_LOADING',
 };

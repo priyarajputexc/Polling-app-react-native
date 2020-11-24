@@ -9,6 +9,7 @@ import { colors } from '../../constants';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { TouchableRipple } from 'react-native-paper';
 import AddPoll from './AddPoll';
+import Loader from './Loader';
 
 const Drawer = createDrawerNavigator();
 
@@ -45,6 +46,7 @@ const HomeStackScreen = ({ navigation }) => (
       component={Home}
       options={{
         headerLeft: () => headerMenuIcon(navigation),
+        headerRight: () => <Loader />,
       }}
     />
   </HomeStack.Navigator>
@@ -57,6 +59,7 @@ const AddPollStackScreen = ({ navigation }) => (
       component={AddPoll}
       options={{
         headerLeft: () => headerMenuIcon(navigation),
+        headerRight: () => <Loader />,
       }}
     />
   </AddPollStack.Navigator>
@@ -69,6 +72,7 @@ const UsersStackScreen = ({ navigation }) => (
       component={Users}
       options={{
         headerLeft: () => headerMenuIcon(navigation),
+        headerRight: () => <Loader />,
       }}
     />
   </UsersStack.Navigator>
@@ -81,6 +85,7 @@ const AddUserStackScreen = ({ navigation }) => (
       component={AddUser}
       options={{
         headerLeft: () => headerMenuIcon(navigation),
+        headerRight: () => <Loader />,
       }}
     />
   </AddUserStack.Navigator>
