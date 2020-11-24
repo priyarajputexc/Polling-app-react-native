@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case actions.SIGN_OUT:
-      return {};
+      return { ...initialState };
 
     case actions.GET_POLLS:
       return {

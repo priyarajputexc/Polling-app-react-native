@@ -84,7 +84,6 @@ const DrawerContent = (props) => {
           onPress={() => {
             AsyncStorage.removeItem('accessToken');
             AsyncStorage.removeItem('username');
-            props.navigation.navigate('Login');
             props.signOut();
           }}
         />

@@ -12,7 +12,6 @@ import { colors } from '../../constants';
 import { login } from '../actions';
 
 const Login = (props) => {
-  const { navigate } = props.navigation;
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -21,9 +20,7 @@ const Login = (props) => {
       setUsername('');
       setPassword('');
     }
-
-    props.accessToken && navigate('Home');
-  }, [props.error, props.accessToken]);
+  }, [props.error]);
 
   return (
     <View style={styles.container}>
