@@ -1,6 +1,16 @@
 import { actions } from '../../constants';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
-import { login, getPolls, getUsers, addUser, deleteOption } from '../api';
+import {
+  login,
+  getPolls,
+  getUsers,
+  addUser,
+  deleteOption,
+  createPoll,
+  deletePoll,
+  editPollTitle,
+  createOption,
+} from '../api';
 import {
   loginSuccess,
   loginFailure,
@@ -51,10 +61,47 @@ function* handleAddUser(action) {
   }
 }
 
+function* handleCreatePoll(action) {
+  try {
+    const data = yield call(createPoll, action.body);
+    if (data && !data.error) yield handleGetPolls();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* handleEditPollTitle(action) {
+  try {
+    const data = yield call(editPollTitle, action.body);
+    if (data && !data.error) yield handleGetPolls();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* handleDeletePoll(action) {
+  try {
+    const data = yield call(deletePoll, action.pollId);
+    if (data && !data.error) yield handleGetPolls();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+function* handleCreateOption(action) {
+  try {
+    console.log(action);
+    const data = yield call(createOption, action.body);
+    if (data && !data.error) yield handleGetPolls();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* handleDeleteOption(action) {
   try {
     const data = yield call(deleteOption, action.body);
-    if (data && !data.error) yield getPolls();
+    if (data && !data.error) yield handleGetPolls();
   } catch (error) {
     console.error(error);
   }
@@ -65,6 +112,12 @@ function* actionWatcher() {
   yield takeLatest(actions.GET_POLLS, handleGetPolls);
   yield takeLatest(actions.GET_USERS, handleGetUsers);
   yield takeLatest(actions.ADD_USER, handleAddUser);
+
+  yield takeLatest(actions.CREATE_POLL, handleCreatePoll);
+  yield takeLatest(actions.EDIT_POLL_TITLE, handleEditPollTitle);
+  yield takeLatest(actions.DELETE_POLL, handleDeletePoll);
+
+  yield takeLatest(actions.CREATE_OPTION, handleCreateOption);
   yield takeLatest(actions.DELETE_OPTION, handleDeleteOption);
 }
 

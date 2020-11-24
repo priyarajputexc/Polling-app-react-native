@@ -1,3 +1,5 @@
+import { Dimensions } from 'react-native';
+
 export const colors = {
   blue: '#1D4354',
   white: '#fff',
@@ -5,6 +7,10 @@ export const colors = {
   green: '#61DEA4',
   red: '#F45E6D',
   lightGrey: '#f4f4f4',
+};
+
+export const dimensions = {
+  width: Dimensions.get('window').width,
 };
 
 export const actions = {
@@ -21,7 +27,7 @@ export const actions = {
   POLLS_RECEIVED: 'POLLS_RECEIVED',
 
   CREATE_POLL: 'CREATE_POLL',
-  EDIT_POLL: 'EDIT_POLL',
+  EDIT_POLL_TITLE: 'EDIT_POLL_TITLE',
   DELETE_POLL: 'DELETE_POLL',
   VOTE_POLL: 'VOTE_POLL',
 

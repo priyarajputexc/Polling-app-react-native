@@ -1,6 +1,14 @@
 import { actions } from '../../constants';
 
-const reducer = (state, action) => {
+const initialState = {
+  isLoading: false,
+  polls: null,
+  users: null,
+  accessToken: null,
+  error: null,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actions.LOGIN:
       return {
@@ -25,7 +33,7 @@ const reducer = (state, action) => {
       };
 
     case actions.SIGN_OUT:
-      return {};
+      return { ...initialState };
 
     case actions.GET_POLLS:
       return {
@@ -56,20 +64,37 @@ const reducer = (state, action) => {
     case actions.ADD_USER:
       return {
         ...state,
-        body: action.body,
         isLoading: true,
+      };
+
+    case actions.CREATE_POLL:
+      return {
+        ...state,
+      };
+
+    case actions.EDIT_POLL_TITLE:
+      return {
+        ...state,
+      };
+
+    case actions.DELETE_POLL:
+      return {
+        ...state,
       };
 
     case actions.VOTE_POLL:
       return {
         ...state,
-        data,
+      };
+
+    case actions.CREATE_OPTION:
+      return {
+        ...state,
       };
 
     case actions.DELETE_OPTION:
       return {
         ...state,
-        body: action.body,
       };
 
     default:

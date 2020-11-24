@@ -43,8 +43,28 @@ export const addUser = (body) => ({
   body,
 });
 
+export const createPoll = (body) => ({
+  type: actions.CREATE_POLL,
+  body,
+});
+
+export const editPollTitle = (body) => ({
+  type: actions.EDIT_POLL_TITLE,
+  body,
+});
+
+export const deletePoll = (pollId) => ({
+  type: actions.DELETE_POLL,
+  pollId,
+});
+
 export const votePoll = () => ({
   type: actions.VOTE_POLL,
+});
+
+export const createOption = (body) => ({
+  type: actions.CREATE_OPTION,
+  body,
 });
 
 export const deleteOption = (body) => ({

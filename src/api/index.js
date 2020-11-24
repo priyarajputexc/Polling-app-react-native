@@ -40,6 +40,51 @@ export const addUser = async (body) => {
   return data;
 };
 
+export const createPoll = async (body) => {
+  const response = await fetch(
+    `${environment.apiBase}/add_poll?title=${body.pollTitle}&options=${body.options}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
+export const editPollTitle = async (body) => {
+  const response = await fetch(
+    `${environment.apiBase}/update_poll_title?id=${body.id}&title=${body.newTitle}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
+export const deletePoll = async (pollId) => {
+  const response = await fetch(
+    `${environment.apiBase}/delete_poll?id=${pollId}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
+export const createOption = async (body) => {
+  console.log(body);
+  const response = await fetch(
+    `${environment.apiBase}/add_new_option?id=${body.id}&option_text=${body.option}`
+  );
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data);
+  }
+  return data;
+};
+
 export const deleteOption = async (body) => {
   const response = await fetch(
     `${environment.apiBase}/delete_poll_option?id=${body.id}&option_text=${body.option}`
