@@ -18,6 +18,7 @@ import {
   usersReceived,
 } from '../actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from '../components/Toast';
 
 function* handleLogin(action) {
   try {
@@ -55,7 +56,12 @@ function* handleGetUsers() {
 function* handleAddUser(action) {
   try {
     const data = yield call(addUser, action.body);
-    if (data && !data.error) yield handleGetUsers();
+    if (data && !data.error) {
+      Toast('User Added Successfully!');
+      yield handleGetUsers();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -64,7 +70,12 @@ function* handleAddUser(action) {
 function* handleCreatePoll(action) {
   try {
     const data = yield call(createPoll, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Created Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -73,7 +84,12 @@ function* handleCreatePoll(action) {
 function* handleEditPollTitle(action) {
   try {
     const data = yield call(editPollTitle, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Title Edited Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -82,7 +98,12 @@ function* handleEditPollTitle(action) {
 function* handleDeletePoll(action) {
   try {
     const data = yield call(deletePoll, action.pollId);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Deleted Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -92,7 +113,12 @@ function* handleCreateOption(action) {
   try {
     console.log(action);
     const data = yield call(createOption, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Option Created Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }
@@ -101,7 +127,12 @@ function* handleCreateOption(action) {
 function* handleDeleteOption(action) {
   try {
     const data = yield call(deleteOption, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Option Deleted Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+    }
   } catch (error) {
     console.error(error);
   }

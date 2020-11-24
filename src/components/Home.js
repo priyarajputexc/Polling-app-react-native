@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { getPolls } from '../actions';
 import Poll from './Poll';
@@ -10,7 +10,7 @@ const Home = (props) => {
   }, [props.polls]);
 
   return (
-    <View style={styles.container}>
+    <View>
       <FlatList
         data={props.polls}
         renderItem={({ item, index }) => <Poll poll={item} index={index + 1} />}
@@ -19,12 +19,6 @@ const Home = (props) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-});
 
 const mapStateToProps = (state) => ({
   polls: state && state.polls,
