@@ -35,23 +35,11 @@ const reducer = (state = initialState, action) => {
     case actions.SIGN_OUT:
       return { ...initialState };
 
-    case actions.GET_POLLS:
-      return {
-        ...state,
-        isLoading: true,
-      };
-
     case actions.POLLS_RECEIVED:
       return {
         ...state,
         isLoading: false,
         polls: action.polls,
-      };
-
-    case actions.GET_USERS:
-      return {
-        ...state,
-        isLoading: true,
       };
 
     case actions.USERS_RECEIVED:
@@ -61,40 +49,24 @@ const reducer = (state = initialState, action) => {
         users: action.users,
       };
 
+    case actions.GET_POLLS:
+    case actions.GET_USERS:
     case actions.ADD_USER:
+    case actions.CREATE_POLL:
+    case actions.EDIT_POLL_TITLE:
+    case actions.DELETE_POLL:
+    case actions.VOTE_POLL:
+    case actions.CREATE_OPTION:
+    case actions.DELETE_OPTION:
       return {
         ...state,
         isLoading: true,
       };
 
-    case actions.CREATE_POLL:
+    case actions.STOP_LOADING:
       return {
         ...state,
-      };
-
-    case actions.EDIT_POLL_TITLE:
-      return {
-        ...state,
-      };
-
-    case actions.DELETE_POLL:
-      return {
-        ...state,
-      };
-
-    case actions.VOTE_POLL:
-      return {
-        ...state,
-      };
-
-    case actions.CREATE_OPTION:
-      return {
-        ...state,
-      };
-
-    case actions.DELETE_OPTION:
-      return {
-        ...state,
+        isLoading: false,
       };
 
     default:

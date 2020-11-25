@@ -88,8 +88,7 @@ const Poll = ({ poll, index }) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: 10,
-    marginVertical: 10,
+    padding: 15,
     borderBottomWidth: 1,
     borderBottomColor: colors.grey,
   },

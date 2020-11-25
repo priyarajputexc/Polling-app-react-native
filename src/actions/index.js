@@ -71,3 +71,7 @@ export const deleteOption = (body) => ({
   type: actions.DELETE_OPTION,
   body,
 });
+
+export const stopLoading = () => ({
+  type: actions.STOP_LOADING,
+});

@@ -16,8 +16,10 @@ import {
   loginFailure,
   pollsReceived,
   usersReceived,
+  stopLoading,
 } from '../actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Toast from '../components/Toast';
 
 function* handleLogin(action) {
   try {
@@ -37,54 +39,88 @@ function* handleLogin(action) {
 function* handleGetPolls() {
   try {
     const data = yield call(getPolls);
-    if (data && !data.error) yield put(pollsReceived(data.data));
+    data && !data.error
+      ? yield put(pollsReceived(data.data))
+      : yield put(stopLoading());
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleGetUsers() {
   try {
     const data = yield call(getUsers);
-    if (data && !data.error) yield put(usersReceived(data.data));
+    data && !data.error
+      ? yield put(usersReceived(data.data))
+      : yield put(stopLoading());
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleAddUser(action) {
   try {
     const data = yield call(addUser, action.body);
-    if (data && !data.error) yield handleGetUsers();
+    if (data && !data.error) {
+      Toast('User Added Successfully!');
+      yield handleGetUsers();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleCreatePoll(action) {
   try {
     const data = yield call(createPoll, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Created Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleEditPollTitle(action) {
   try {
     const data = yield call(editPollTitle, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Title Edited Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleDeletePoll(action) {
   try {
     const data = yield call(deletePoll, action.pollId);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Deleted Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
@@ -92,18 +128,32 @@ function* handleCreateOption(action) {
   try {
     console.log(action);
     const data = yield call(createOption, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Option Created Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
 function* handleDeleteOption(action) {
   try {
     const data = yield call(deleteOption, action.body);
-    if (data && !data.error) yield handleGetPolls();
+    if (data && !data.error) {
+      Toast('Poll Option Deleted Successfully!');
+      yield handleGetPolls();
+    } else {
+      Toast(data.message);
+      yield put(stopLoading());
+    }
   } catch (error) {
     console.error(error);
+    yield put(stopLoading());
   }
 }
 
